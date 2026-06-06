@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HaShop — Instructor Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #09090b;
+  --surface: #111114;
+  --surface2: #18181b;
+  --border: #27272a;
+  --subtle: #3f3f46;
+  --muted: #71717a;
+  --text: #fafafa;
+  --purple: #7c3aed;
+  --purple-light: #a78bfa;
+  --purple-dark: #4c1d95;
+  --neon: #06d6a0;
+  --amber: #f59e0b;
+  --red: #ef4444;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #0d0915, #1a0a2e);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 3rem;
+  border: 1px solid rgba(124,58,237,.3);
+}
+.hero-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(124,58,237,.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(6,214,160,.15) 0%, transparent 45%),
+    linear-gradient(rgba(124,58,237,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,.03) 1px, transparent 1px);
+  background-size: auto, auto, 40px 40px, 40px 40px;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 2.8rem 3rem;
+}
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.store-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+.store-name .ha { color: var(--purple-light); }
+.store-name .dot { color: var(--neon); }
+.subtitle {
+  font-size: .875rem;
+  color: rgba(255,255,255,.45);
+  margin-top: .5rem;
+  font-weight: 400;
+  letter-spacing: .3px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(124,58,237,.15);
+  border: 1px solid rgba(124,58,237,.35);
+  color: var(--purple-light);
+  padding: .3rem .85rem;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+.student-card {
+  background: rgba(124,58,237,.1);
+  border: 1px solid rgba(124,58,237,.3);
+  border-radius: 14px;
+  padding: 1.2rem 1.6rem;
+  min-width: 220px;
+}
+.student-card .lbl {
+  font-size: .62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--neon);
+  margin-bottom: .5rem;
+  font-weight: 700;
+}
+.student-card .sname {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  font-weight: 800;
+}
+.student-card .sid {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem;
+  color: var(--purple-light);
+  margin-top: .3rem;
+}
+.to-box {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 1.5rem;
+  font-size: .9rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.75;
+}
+.to-box strong { color: var(--purple-light); }
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 2.8rem 0 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+h3 { font-size: .93rem; font-weight: 600; color: var(--purple-light); margin: 1.1rem 0 .4rem; }
+p { line-height: 1.78; color: var(--muted); margin-bottom: .7rem; font-size: .91rem; }
+
+/* ── FEATURES ── */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+  margin: .8rem 0 1.5rem;
+}
+.feature {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font-size: .855rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .55rem .9rem;
+}
+.feature .dot {
+  width: 7px; height: 7px;
+  background: var(--neon);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── CREDENTIALS ── */
+.creds {
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  margin: .8rem 0;
+  border: 1.5px solid rgba(124,58,237,.4);
+  background: var(--surface);
+}
+.creds h3 { color: var(--purple-light); margin: 0 0 .8rem; font-size: 1rem; }
+.cred-row { display: flex; flex-wrap: wrap; gap: 2rem; }
+.cred-item { font-family: 'JetBrains Mono', monospace; font-size: .85rem; color: var(--text); }
+.cred-item span { color: var(--muted); margin-right: .3rem; }
+.creds.alt { border-color: rgba(6,214,160,.35); }
+.creds.alt h3 { color: var(--neon); }
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--purple);
+}
+.card h3 { margin-top: 0; }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.2);
+  padding: .15rem .45rem;
+  border-radius: 5px;
+  font-size: .82rem;
+  color: var(--purple-light);
+}
+
+/* ── FLOW ── */
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 1rem 0;
+  align-items: center;
+}
+.flow-step {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: .55rem 1.1rem;
+  font-size: .78rem;
+  font-weight: 600;
+  position: relative;
+  letter-spacing: .3px;
+}
+.flow-step:first-child { border-radius: 8px 0 0 8px; }
+.flow-step:last-child  { border-radius: 0 8px 8px 0; }
+.flow-step:not(:last-child)::after {
+  content: '›';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--purple-light);
+  font-size: 1.1rem;
+  font-weight: 700;
+  z-index: 2;
+}
+.flow-step:not(:first-child) { margin-left: 14px; }
+.flow-step.hl { background: var(--purple); color: #fff; border-color: var(--purple); font-weight: 700; }
+
+/* ── TABLE ── */
+table { width:100%; border-collapse:collapse; margin:.8rem 0; font-size:.875rem; }
+th {
+  background: var(--surface2);
+  color: var(--muted);
+  padding: .65rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+th:first-child { border-radius: 8px 0 0 0; }
+th:last-child  { border-radius: 0 8px 0 0; }
+td { padding: .65rem 1rem; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(124,58,237,.04); color: var(--text); }
+
+.tag { padding: .22rem .7rem; border-radius: 20px; font-size: .68rem; font-weight: 700; }
+.tag-admin  { background: rgba(124,58,237,.12); color: var(--purple-light); border: 1px solid rgba(124,58,237,.25); }
+.tag-public { background: rgba(6,214,160,.1); color: var(--neon); border: 1px solid rgba(6,214,160,.2); }
+.tag-auth   { background: rgba(245,158,11,.1); color: var(--amber); border: 1px solid rgba(245,158,11,.2); }
+
+/* ── TIP ── */
+.tip {
+  background: rgba(124,58,237,.07);
+  border-left: 3px solid var(--purple);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.3rem;
+  margin: 1rem 0;
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.tip strong { color: var(--purple-light); }
+
+/* ── SIGNATURE ── */
+.sig {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.sig .left { font-size: .85rem; color: var(--muted); line-height: 1.8; }
+.sig .left strong { color: var(--text); font-size: 1rem; display: block; }
+.sig .right { text-align: right; font-size: .85rem; color: var(--muted); line-height: 1.8; }
+.sig .right strong { color: var(--text); }
+.sig-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--purple-light);
+  letter-spacing: -1px;
+  margin-bottom: .3rem;
+}
+.sig-logo .dot { color: var(--neon); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div>
+        <div class="store-name"><span class="ha">Ha</span>Shop<span class="dot">·</span></div>
+        <div class="subtitle">Advanced Web Programming — End of Semester Submission</div>
+        <div class="badges">
+          <span class="badge">Laravel 11</span>
+          <span class="badge">Admin Panel</span>
+          <span class="badge">Role-Based Auth</span>
+          <span class="badge">Full CRUD</span>
+        </div>
+      </div>
+      <div class="student-card">
+        <div class="lbl">Submitted by</div>
+        <div class="sname">Hammadahamane Alousseyna</div>
+        <div class="sid">ID: 20222022769</div>
+      </div>
+    </div>
+    <div class="to-box">
+      <strong>Dear Dr. Yüksel Çelik,</strong><br>
+      This document provides an overview of my e-commerce project — what it includes, how it's structured, and how to navigate it. Thank you for your time reviewing my work.
+    </div>
+  </div>
+</div>
+
+<h2>📦 What I Built</h2>
+<p>A fully functional e-commerce website with a separate admin panel, built with Laravel 11. The design and code are my own, following the same functionality demonstrated in your lessons.</p>
+<div class="features">
+  <div class="feature"><span class="dot"></span> User Registration &amp; Login</div>
+  <div class="feature"><span class="dot"></span> Role-Based Access Control (Admin / Customer)</div>
+  <div class="feature"><span class="dot"></span> Category Management — full CRUD</div>
+  <div class="feature"><span class="dot"></span> Subcategory Management — full CRUD</div>
+  <div class="feature"><span class="dot"></span> Product Management with Image Upload</div>
+  <div class="feature"><span class="dot"></span> Order Management &amp; Status Updates</div>
+  <div class="feature"><span class="dot"></span> Shopping Cart (session-based)</div>
+  <div class="feature"><span class="dot"></span> Checkout &amp; Order Placement</div>
+  <div class="feature"><span class="dot"></span> Product Search &amp; Price Filters</div>
+  <div class="feature"><span class="dot"></span> Customer Order History Page</div>
+  <div class="feature"><span class="dot"></span> Admin Dashboard with Live Stats</div>
+  <div class="feature"><span class="dot"></span> Responsive Design (mobile-friendly)</div>
+</div>
+
+<h2>🔑 Login Credentials</h2>
+<p>Two accounts are pre-seeded in the database for immediate testing:</p>
+
+<div class="creds">
+  <h3>Admin Account — Full Panel Access</h3>
+  <div class="cred-row">
+    <div class="cred-item"><span>Email:</span> admin@hashop.com</div>
+    <div class="cred-item"><span>Password:</span> password</div>
+    <div class="cred-item"><span>Panel:</span> /admin</div>
+  </div>
+</div>
+
+<div class="creds alt">
+  <h3>Customer Account — Shop Access</h3>
+  <div class="cred-row">
+    <div class="cred-item"><span>Email:</span> customer@hashop.com</div>
+    <div class="cred-item"><span>Password:</span> password</div>
+  </div>
+</div>
+
+<h2>⚙️ How the System Works</h2>
+
+<div class="card">
+  <h3>Role-Based Login</h3>
+  <p>When a user logs in, the system checks their role (<code>admin</code> or <code>customer</code>). Admins are automatically redirected to <code>/admin</code>. Customers go to the shop. The <code>AdminMiddleware</code> blocks any non-admin from accessing admin routes — they receive a 403 error.</p>
+</div>
+
+<div class="card">
+  <h3>Admin Panel</h3>
+  <p>The admin panel is a separate section of the site accessible only to admin users. From there, the admin can manage every part of the store: add/edit/delete categories, subcategories, products, view and update orders, and manage users including changing their role instantly from a dropdown.</p>
+</div>
+
+<div class="card">
+  <h3>Shop (Customer Side)</h3>
+  <p>Customers can browse all products, filter by category, search by name, and sort by price. They can add items to their cart (stored in the session), go through checkout, and view their order history. No payment gateway is implemented — orders are placed directly.</p>
+</div>
+
+<div class="card">
+  <h3>Categories &amp; Subcategories</h3>
+  <p>Products belong to a category and optionally a subcategory. When adding a product, the subcategory dropdown filters automatically based on the selected category using JavaScript. This is managed through relational foreign keys in the database.</p>
+</div>
+
+<h2>🔄 User Flow</h2>
+<p>Here is how a typical customer interacts with the site:</p>
+<div class="flow">
+  <div class="flow-step">Visit Homepage</div>
+  <div class="flow-step">Browse / Search</div>
+  <div class="flow-step hl">Add to Cart</div>
+  <div class="flow-step">Register / Login</div>
+  <div class="flow-step">Checkout</div>
+  <div class="flow-step">Order Placed ✓</div>
+</div>
+<p style="margin-top:.9rem">Admin flow:</p>
+<div class="flow">
+  <div class="flow-step">Login as Admin</div>
+  <div class="flow-step hl">Dashboard</div>
+  <div class="flow-step">Manage Products</div>
+  <div class="flow-step">View Orders</div>
+  <div class="flow-step">Update Status</div>
+</div>
+
+<h2>🗺️ Pages &amp; URLs</h2>
+<table>
+  <tr><th>URL</th><th>Page</th><th>Access</th></tr>
+  <tr><td>/</td><td>Shop Homepage — hero, featured products, categories</td><td><span class="tag tag-public">Everyone</span></td></tr>
+  <tr><td>/products</td><td>All products with search &amp; filter sidebar</td><td><span class="tag tag-public">Everyone</span></td></tr>
+  <tr><td>/products/{slug}</td><td>Single product detail + related products</td><td><span class="tag tag-public">Everyone</span></td></tr>
+  <tr><td>/cart</td><td>Shopping cart with item list &amp; total</td><td><span class="tag tag-auth">Auth</span></td></tr>
+  <tr><td>/checkout</td><td>Shipping form + order summary</td><td><span class="tag tag-auth">Auth</span></td></tr>
+  <tr><td>/my-orders</td><td>Customer's personal order history</td><td><span class="tag tag-auth">Auth</span></td></tr>
+  <tr><td>/login</td><td>Login page</td><td><span class="tag tag-public">Everyone</span></td></tr>
+  <tr><td>/register</td><td>Registration page</td><td><span class="tag tag-public">Everyone</span></td></tr>
+  <tr><td>/admin</td><td>Admin dashboard — stats &amp; recent orders</td><td><span class="tag tag-admin">Admin Only</span></td></tr>
+  <tr><td>/admin/categories</td><td>Add / edit / delete categories</td><td><span class="tag tag-admin">Admin Only</span></td></tr>
+  <tr><td>/admin/subcategories</td><td>Add / edit / delete subcategories</td><td><span class="tag tag-admin">Admin Only</span></td></tr>
+  <tr><td>/admin/products</td><td>Add / edit / delete products + image upload</td><td><span class="tag tag-admin">Admin Only</span></td></tr>
+  <tr><td>/admin/users</td><td>View users, change roles (admin ↔ customer)</td><td><span class="tag tag-admin">Admin Only</span></td></tr>
+  <tr><td>/admin/orders</td><td>View all orders, update order status</td><td><span class="tag tag-admin">Admin Only</span></td></tr>
+</table>
+
+<h2>🗃️ Database Structure</h2>
+<table>
+  <tr><th>Table</th><th>Purpose</th><th>Key Columns</th></tr>
+  <tr><td><code>users</code></td><td>All accounts (admin &amp; customer)</td><td>name, email, password, role</td></tr>
+  <tr><td><code>categories</code></td><td>Main product categories</td><td>name, slug, image, is_active</td></tr>
+  <tr><td><code>subcategories</code></td><td>Sub-groups under categories</td><td>category_id, name, slug</td></tr>
+  <tr><td><code>products</code></td><td>All shop products</td><td>name, price, sale_price, stock, image, is_featured</td></tr>
+  <tr><td><code>orders</code></td><td>Customer orders</td><td>user_id, total_amount, status, shipping_address</td></tr>
+  <tr><td><code>order_items</code></td><td>Individual items inside each order</td><td>order_id, product_id, quantity, price</td></tr>
+</table>
+
+<h2>🛠️ Technologies Used</h2>
+<table>
+  <tr><th>Technology</th><th>Purpose</th></tr>
+  <tr><td>Laravel 11 (PHP)</td><td>Backend framework — routing, controllers, models, middleware</td></tr>
+  <tr><td>Blade Templates</td><td>Server-side HTML rendering for all pages</td></tr>
+  <tr><td>SQLite / MySQL</td><td>Relational database for all data</td></tr>
+  <tr><td>Eloquent ORM</td><td>Database queries and model relationships</td></tr>
+  <tr><td>Laravel Sessions</td><td>Shopping cart stored in session</td></tr>
+  <tr><td>CSS (custom)</td><td>All styling written from scratch — no Bootstrap</td></tr>
+  <tr><td>Vanilla JavaScript</td><td>Subcategory filtering, form interactions</td></tr>
+  <tr><td>Font Awesome</td><td>Icons throughout the UI</td></tr>
+</table>
+
+<div class="tip">
+  <strong>Note for Dr. Çelik:</strong> The database is pre-seeded with sample data (3 categories, 5 subcategories, 8 products, 2 users). You can log in immediately with the credentials above without needing to add anything manually.
+</div>
+
+<div class="sig">
+  <div class="left">
+    <div class="sig-logo"><span style="color:var(--purple-light)">Ha</span>Shop<span class="dot">·</span></div>
+    <strong>Hammadahamane Alousseyna</strong>
+    Student ID: 20222022769<br>
+    Advanced Web Programming
+  </div>
+  <div class="right">
+    Submitted to:<br>
+    <strong>Dr. Yüksel Çelik</strong><br>
+    End of Semester Project
+  </div>
+</div>
+
+</body>
+</html>
